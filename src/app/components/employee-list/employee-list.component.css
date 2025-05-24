@@ -1,0 +1,44 @@
+.employee-list-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #1b3c37;
+  color: white !important;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+input{
+  color: white !important;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.filter-input {
+  width: 100%;
+  margin-bottom: 15px;
+  color: white !important;
+
+}
+
+.mat-label{
+  color: white !important;
+}
+table {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+th.mat-header-cell {
+  background-color: #00eaff;
+  color: #000;
+  font-weight: bold;
+}
+i{
+  font-size: 25px !important;
+}
+
+

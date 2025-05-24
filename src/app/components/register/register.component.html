@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="glass-card">
+    <div class="ai-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="AI Assistant" />
+      <p>Hi! Ready to join us?</p>
+    </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="register-form">
+      <h2>Register</h2>
+
+      <div class="input-group" *ngFor="let field of [
+        {name:'firstName', label:'First Name', type:'text'},
+        {name:'lastName', label:'Last Name', type:'text'},
+        {name:'email', label:'Email', type:'email'},
+        {name:'phone', label:'Phone Number', type:'tel'},
+        {name:'idNumber', label:'ID Number', type:'text'},
+        {name:'signatureUrl', label:'Signature URL', type:'text'},
+        {name:'age', label:'Age', type:'number'}
+      ]">
+        <input
+          [type]="field.type"
+          [formControlName]="field.name"
+          required
+          autocomplete="off"
+          placeholder=" "
+        />
+        <label>{{field.label}}</label>
+      </div>
+
+      <div class="input-group">
+        <select formControlName="role" required>
+          <option value="" disabled selected>Select Role</option>
+          <option value="admin">Admin</option>
+          <option value="employee">Employee</option>
+        </select>
+        <label class="floating-label">Role</label>
+      </div>
+
+      <button type="submit" [disabled]="registerForm.invalid">Register</button>
+
+      <p class="switch-msg">
+        You have an account? <a href="/login">Login</a>
+      </p>
+
+      <div class="message" [ngClass]="messageType" *ngIf="message">{{message}}</div>
+    </form>
+  </div>
+</div>
+

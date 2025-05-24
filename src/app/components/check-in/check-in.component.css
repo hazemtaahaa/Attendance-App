@@ -1,0 +1,83 @@
+.container {
+  max-width: 450px;
+  margin: 150px auto;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f0f4f7, #d9e2ec);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.box {
+  margin-bottom: 20px;
+}
+
+.countdown {
+  font-size: 32px;
+  font-weight: 700;
+  color: #555;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 15px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #81C784);
+  transition: width 1s linear;
+  border-radius: 10px;
+}
+
+.checkin-btn {
+  font-size: 19px;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.checkin-btn:hover:not(:disabled) {
+  box-shadow: 0 6px 15px rgba(76, 175, 80, 0.7);
+  transform: scale(1.05);
+}
+
+.checkin-btn:disabled {
+  opacity: 0.6;
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.message.success {
+  color: #2e7d32;
+}
+
+.message.error {
+  color: #c62828;
+}
+
+.fa {
+  font-size: 24px;
+}

@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Daily Check-in</h1>
+
+  <div class="box">
+    <p *ngIf="now < startTime">Check-in opens in:</p>
+    <p *ngIf="now >= startTime && now <= endTime">Time left to check in:</p>
+    <p *ngIf="now > endTime">Check-in window is closed</p>
+
+    <div *ngIf="now <= endTime" class="countdown">
+      <span>{{ hoursLeft }}h</span> :
+      <span>{{ minutesLeft }}m</span> :
+      <span>{{ secondsLeft }}s</span>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress" [style.width.%]="progressPercent"></div>
+    </div>
+  </div>
+
+  <button
+    [disabled]="!canCheckIn || isCheckedInToday"
+    (click)="onCheckIn()"
+    [ngStyle]="{
+      'background': canCheckIn
+        ? 'linear-gradient(45deg, #4CAF50, #81C784)'
+        : 'linear-gradient(45deg, #F44336, #E57373)',
+      'cursor': canCheckIn && !isCheckedInToday ? 'pointer' : 'not-allowed'
+    }"
+    class="checkin-btn"
+  >
+    {{ isCheckedInToday ? 'Already Checked In' : 'Check In' }}
+  </button>
+
+  <div *ngIf="message" class="message" [ngClass]="messageType">
+    <i *ngIf="messageType === 'success'" class="fa fa-check-circle"></i>
+    <i *ngIf="messageType === 'error'" class="fa fa-exclamation-circle"></i>
+    {{ message }}
+  </div>
+</div>
+

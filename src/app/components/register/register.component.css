@@ -1,0 +1,195 @@
+/* Glassmorphism container */
+.container {
+  height: 100vh;
+  background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 16px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 380px;
+  padding: 32px;
+  color: #ffffff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ai-container {
+  text-align: center;
+  margin-bottom: 16px;
+  animation: fadeInDown 0.8s ease forwards;
+}
+
+.ai-container img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 3px;
+  border-radius: 50%;
+  animation: float 2s ease-in-out infinite;
+}
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.ai-container p {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.register-form h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+  color: #0ff;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  color: #e0f7fa;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input::placeholder {
+  color: transparent;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #00fff7;
+}
+
+.input-group label,
+.input-group .floating-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #b2ebf2;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.3s ease all;
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group select:focus + .floating-label,
+.input-group select:not([value=""]) + .floating-label {
+  top: -14px;
+  left: 5px;
+  font-size: 12px;
+  color: #00fff7;
+}
+select option{
+  color:black
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 3px;
+  display: block;
+}
+
+button {
+  width: 100%;
+  background: #00fff7;
+  border: none;
+  padding: 12px;
+  border-radius: 30px;
+  color: #004d40;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s ease;
+}
+
+button:disabled {
+  background: #0080808c;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background: #00bcd4;
+}
+
+.switch-msg {
+  margin-top: 16px;
+  text-align: center;
+  color: #b2ebf2;
+  font-size: 15px;
+}
+
+.switch-msg a {
+  color: #00fff7;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.switch-msg a:hover {
+  text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Success message style */
+.message.success {
+  color: #00ffea;
+  font-weight: 600;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Error message style */
+.message.error {
+  color: #ff6b6b;
+  font-weight: 600;
+  margin-top: 15px;
+  text-align: center;
+}

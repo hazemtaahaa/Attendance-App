@@ -1,0 +1,149 @@
+.signature-container {
+  border: 1px dashed #b84747;
+  padding: 15px;
+  width: 300px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+  color: #555;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 30px;
+  position: relative;
+}
+
+.signature-label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #004d40;
+}
+
+.signature-container img {
+  max-width: 100%;
+  max-height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.signature-placeholder {
+  font-style: italic;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+input[type="file"] {
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 6px 12px;
+  margin: 4px;
+  border: none;
+  border-radius: 4px;
+  background-color: #004d40;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #00695c;
+}
+
+.pad-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.signature-pad {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 4px;
+  cursor: crosshair;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+  .signature-container {
+    width: 100%;
+    max-width: 400px;
+    min-height: 80px;
+  }
+
+  .signature-container img {
+    max-height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signature-container {
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  .signature-label {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .signature-container {
+    width: 100%;
+    max-width: 400px;
+    min-height: 80px;
+  }
+
+  .signature-container img {
+    max-height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signature-container {
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  .signature-label {
+    font-size: 14px;
+  }
+}
+
+.signature-canvas {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 10px;
+  background-color: #fff;
+  touch-action: none; /* Allow drawing on touch devices */
+}
+
+.canvas-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.canvas-buttons button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #004d40;
+  color: white;
+  cursor: pointer;
+}
+
+.canvas-buttons button:hover {
+  background-color: #00695c;
+}

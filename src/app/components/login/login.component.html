@@ -1,0 +1,23 @@
+<div class="login-container">
+  <div class="ai-character">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png" alt="AI Assistant" />
+    <h2>Hello! Ready to log in?</h2>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="form-box">
+    <h2 class="title">Login</h2>
+
+    <div class="input-group animated" *ngFor="let field of formFields; let i = index"
+      [style.animationDelay]="i * 0.3 + 's'">
+      <input [formControlName]="field.controlName" [type]="field.controlName === 'email' ? 'email' : 'password'"
+        required />
+      <label>{{ field.label }}</label>
+    </div>
+
+    <button type="submit" class="animated" style="animation-delay: 1.2s" [disabled]="loginForm.invalid">Login</button>
+
+    <div *ngIf="message" [ngClass]="messageType" class="animated" style="animation-delay: 1.4s">
+      {{ message }}
+    </div>
+  </form>
+</div>

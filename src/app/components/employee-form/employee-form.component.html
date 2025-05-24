@@ -1,0 +1,57 @@
+<div class="employee-form-container">
+  <h2><i class="fa-solid fa-user"></i> {{ isEditMode ? 'Edit Employee' : 'Add New Employee' }}</h2>
+
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>First Name</label>
+      <input type="text" formControlName="firstName" placeholder="First Name" />
+      <span class="error" *ngIf="employeeForm.get('firstName')?.touched && employeeForm.get('firstName')?.invalid">
+        First Name is required.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" formControlName="lastName" placeholder="Last Name" />
+      <span class="error" *ngIf="employeeForm.get('lastName')?.touched && employeeForm.get('lastName')?.invalid">
+        Last Name is required.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="text" formControlName="phoneNumber" placeholder="Phone Number" />
+      <span class="error" *ngIf="employeeForm.get('phoneNumber')?.touched && employeeForm.get('phoneNumber')?.invalid">
+        Please enter a valid Egyptian phone number (e.g., 01XXXXXXXXX).
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>National ID</label>
+      <input type="text" formControlName="nationalId" placeholder="National ID" />
+      <span class="error" *ngIf="employeeForm.get('nationalId')?.touched && employeeForm.get('nationalId')?.invalid">
+        National ID must be 14 digits.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Age</label>
+      <input type="number" formControlName="age" placeholder="Age" />
+      <span class="error" *ngIf="employeeForm.get('age')?.touched && employeeForm.get('age')?.invalid">
+        Age must be between 18 and 100.
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label>Signature (Optional)</label>
+      <app-signature [signatureUrl]="employeeForm.get('signatureUrl')?.value"
+        (signatureChanged)="onSignatureChanged($event)"></app-signature>
+    </div>
+
+    <button type="submit" [disabled]="employeeForm.invalid">
+      <i class="fa-solid fa-user-plus"></i> {{ isEditMode ? 'Update Employee' : 'Add Employee' }}
+    </button>
+
+    <p *ngIf="message" [ngClass]="messageType">{{ message }}</p>
+  </form>
+</div>
