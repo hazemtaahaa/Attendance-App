@@ -15,7 +15,11 @@ export class CheckInComponent implements OnInit {
   canCheckIn: boolean = false;
   isCheckedInToday: boolean = false;
 
+
+
+
   now: Date = new Date();
+
   timerSubscription!: Subscription;
 
   startTime = new Date();
@@ -112,8 +116,6 @@ ngOnDestroy(): void {
       next: () => {
         this.messageType = 'success';
         this.message = 'Login successful!';
-        debugger;     
-        console.log("Suceeesssssssssssssssssss");
       },
       error: (err) => {
         console.error(err);

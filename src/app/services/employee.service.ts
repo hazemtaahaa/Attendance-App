@@ -57,9 +57,7 @@ export class EmployeeService {
     return this.http.post(`https://localhost:7170/api/Auth/register`, employee, {
       headers: { Authorization: `Bearer ${this.authService.getToken()}` }
     }).pipe(
-      tap(() => {
-              this.router.navigate(['/employee-list']);
-            }),
+     
       catchError((error: HttpErrorResponse) => {
         let errorMessage = 'Failed to add employee.';
         if (error.status === 400) {
@@ -84,6 +82,7 @@ export class EmployeeService {
       headers: { Authorization: `Bearer ${this.authService.getToken()}` }
     }).pipe(
       catchError((error: HttpErrorResponse) => {
+        
         let errorMessage = 'Failed to update employee.';
         if (error.status === 400) {
           errorMessage = error.error || 'Invalid employee details. Ensure all fields are provided and Age is 18–100.';

@@ -84,22 +84,19 @@ export class EmployeeFormComponent implements OnInit {
       ? this.employeeService.updateEmployee(this.employeeId!, employee)
       : this.employeeService.addEmployee(employee);
 
-    request.subscribe({
-      next: () => {
-        
-        this.messageType = 'success';
-        this.message = this.isEditMode ? 'Employee updated successfully!' : 'Employee added successfully!';
-        this.router.navigate(['/employee-list']);
-      },
-      // error: (err) => {
-      //   console.error(err);
-      //    // Use ChangeDetectorRef to ensure the view updates
-      //    // when the error message is set
-      //   this.messageType = 'error';
-      //   this.message = err.message || 'Failed to save employee.';
-      //   this.cdr.detectChanges(); // Force view update 
-      // }
-    });
+      request.subscribe({
+        next: () => {
+          this.messageType = 'success';
+          this.message = this.isEditMode ? 'Employee updated successfully!' : 'Employee added successfully!';
+          this.cdr.detectChanges();
+          setTimeout(() => this.router.navigate(['/employee-list']), 2000);
+        },
+        error: (err) => {
+          this.router.navigate(['/employee-list']);
+          
+          this.cdr.detectChanges();
+        }
+      });
   }
 
   go(){

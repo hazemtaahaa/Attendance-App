@@ -78,7 +78,7 @@
         (signatureChanged)="onSignatureChanged($event)"></app-signature>
     </div>
 
-    <button type="submit" [disabled]="employeeForm.invalid">
+    <button [disabled]="employeeForm.invalid">
       <i class="fa-solid fa-user-plus"></i> {{ isEditMode ? 'Update Employee' : 'Add Employee' }}
     </button>
 
