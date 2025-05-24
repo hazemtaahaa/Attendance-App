@@ -54,6 +54,9 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/register`, user, {
       headers: { Authorization: `Bearer ${this.getToken()}` }
     }).pipe(
+      tap(() => {
+        this.router.navigate(['/employee-list']);
+      }),
       catchError((error: HttpErrorResponse) => {
         let errorMessage = 'Registration failed.';
         if (error.status === 400) {
@@ -79,7 +82,7 @@ export class AuthService {
 
   isAdmin(): boolean {
     const role = localStorage.getItem('role');
-    if (role!== 'Admin') return false;
+    //if (role!== 'Admin') return false;
     
     return role === 'Admin';
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -19,6 +20,9 @@ export class ProfileComponent implements OnInit {
     signatureUrl: ''
   };
 
+  constructor(private profileService:ProfileService) {
+
+  }
   attendanceHistory: { date: string, status: string }[] = [];
 
   ngOnInit() {
@@ -28,8 +32,26 @@ export class ProfileComponent implements OnInit {
       date,
       status: 'Checked In'
     }));
+    this.ddo();
   }
-
+ddo()
+{
+  this.profileService.getProfileData().subscribe({
+    next: (res) => {
+      console.log('Employee data loaded:', res);
+      const employee = res;
+      if (employee) {
+        this.employee= employee;
+        
+      } else {
+        console.error('Employee not found.');  
+      }
+    },
+    error: (err) => {
+      console.error('Failed to load employee data:', err);  
+    }
+  });
+}
   onSignatureChanged(newSignature: string) {
     this.employee.signatureUrl = newSignature;
   }

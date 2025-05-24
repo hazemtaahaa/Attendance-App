@@ -1,6 +1,7 @@
 import { Component ,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { interval, Subscription } from 'rxjs';
+import { AttendanceService } from '../../services/attendance.service';
 
 @Component({
   selector: 'app-check-in',
@@ -26,7 +27,9 @@ export class CheckInComponent implements OnInit {
 
   progressPercent: number = 0;
 
-  constructor() {
+  constructor(
+    private atttendanceService : AttendanceService
+  ) {
     // Set window from 7:30 AM to 9:00 AM today
     this.startTime.setHours(7, 30, 0, 0);
     this.endTime.setHours(9, 0, 0, 0);
@@ -105,7 +108,19 @@ ngOnDestroy(): void {
       this.messageType = 'error';
       return;
     }
-
+    this.atttendanceService.check_in().subscribe({
+      next: () => {
+        this.messageType = 'success';
+        this.message = 'Login successful!';
+        debugger;     
+        console.log("Suceeesssssssssssssssssss");
+      },
+      error: (err) => {
+        console.error(err);
+        this.messageType = 'error';
+        this.message = err.message || 'Login failed. Please check your credentials.';
+      }
+    });
     localStorage.setItem('lastCheckInDate', new Date().toISOString());
     this.message = 'Check-in successful. Have a great day!';
     this.messageType = 'success';

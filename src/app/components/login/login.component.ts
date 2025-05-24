@@ -46,6 +46,7 @@ export class LoginComponent {
       next: () => {
         this.messageType = 'success';
         this.message = 'Login successful!';
+        debugger;     
         if (this.authService.isAdmin()) {
           this.router.navigate(['/admin-dashboard']);
         } else {

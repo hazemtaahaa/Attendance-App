@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class EmployeeService {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   getEmployees(params: {
@@ -46,12 +48,18 @@ export class EmployeeService {
     lastName: string;
     phoneNumber: string;
     nationalId: string;
+    email: string;
+    password: string;
+    role: string;
     age: number;
     signatureUrl: string | null;
   }): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, employee, {
+    return this.http.post(`https://localhost:7170/api/Auth/register`, employee, {
       headers: { Authorization: `Bearer ${this.authService.getToken()}` }
     }).pipe(
+      tap(() => {
+              this.router.navigate(['/employee-list']);
+            }),
       catchError((error: HttpErrorResponse) => {
         let errorMessage = 'Failed to add employee.';
         if (error.status === 400) {
@@ -104,4 +112,6 @@ export class EmployeeService {
       })
     );
   }
+
+  
 }

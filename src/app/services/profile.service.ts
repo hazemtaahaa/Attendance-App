@@ -32,4 +32,20 @@ export class ProfileService {
       })
     );
   }
+
+  getProfileData(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/profile`, 
+      {
+        headers: { Authorization: `Bearer ${this.authService.getToken()}` }
+      }).pipe(
+        catchError((error: HttpErrorResponse) => {
+          let errorMessage = 'Failed to fetch employee profile.';
+          
+           if (error.status === 401) {
+            errorMessage = 'Unauthorized: Admin access required.';
+          }
+          return throwError(() => new Error(errorMessage));
+        })
+      );
+    }
 }

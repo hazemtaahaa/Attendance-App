@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class AttendanceService {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   getAttendanceHistory(): Observable<any[]> {
@@ -41,6 +43,24 @@ export class AttendanceService {
           errorMessage = 'Unauthorized: Invalid user.';
         } else if (error.status === 404) {
           errorMessage = 'Employee not found.';
+        }
+        return throwError(() => new Error(errorMessage));
+      })
+    );
+  }
+  check_in(): Observable<any> {
+    return this.http.post(`https://localhost:7170/api/Employee/checkin`, {
+      headers: { Authorization: `Bearer ${this.authService.getToken()}` }
+    }).pipe(
+      tap(() => {
+              //this.router.navigate(['/employee-list']);
+            }),
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'Failed .';
+        if (error.status === 400) {
+          errorMessage = error.error || 'Invalid employee details. Ensure all fields are provided and Age is 18–100.';
+        } else if (error.status === 401) {
+          errorMessage = 'Unauthorized: Admin access required.';
         }
         return throwError(() => new Error(errorMessage));
       })
